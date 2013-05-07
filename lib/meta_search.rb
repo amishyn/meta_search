@@ -15,6 +15,7 @@ module MetaSearch
     ['contains', 'like', 'matches', {:types => STRINGS, :predicate => :matches, :formatter => '"%#{param}%"'}],
     ['does_not_contain', 'nlike', 'not_matches', {:types => STRINGS, :predicate => :does_not_match, :formatter => '"%#{param}%"'}],
     ['starts_with', 'sw', {:types => STRINGS, :predicate => :matches, :formatter => '"#{param}%"'}],
+    ['starts_with_or_contains', 'swc', {:types => STRINGS, :predicate => :matches, :formatter => Proc.new {|param| prefix = param.length > 1 ? '%' : ''; "#{prefix}#{param}%" } }],
     ['does_not_start_with', 'dnsw', {:types => STRINGS, :predicate => :does_not_match, :formatter => '"#{param}%"'}],
     ['ends_with', 'ew', {:types => STRINGS, :predicate => :matches, :formatter => '"%#{param}"'}],
     ['does_not_end_with', 'dnew', {:types => STRINGS, :predicate => :does_not_match, :formatter => '"%#{param}"'}],
